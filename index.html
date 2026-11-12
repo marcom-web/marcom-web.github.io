@@ -161,6 +161,50 @@ button,input,textarea{font:inherit;color:inherit}
   .pgrid{grid-template-columns:1fr}.pcard,.pfeat{min-height:0}.pfeat ul{max-height:none}
 }
 
+
+/* ===== christmas ===== */
+:root{--xbar:42px;--xmas:#C8102E;--pine:#1F8A4C}
+.xbar{position:fixed;top:0;left:0;right:0;height:var(--xbar);z-index:70;display:flex;align-items:center;overflow:hidden;background:linear-gradient(90deg,#9E0B1F,#D41A26 40%,#ED1C24 60%,#9E0B1F);color:#fff;box-shadow:0 6px 24px -10px rgba(200,16,46,.9);text-decoration:none}
+.xbar:after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:repeating-linear-gradient(90deg,#fff 0 12px,#1F8A4C 12px 24px,#fff 24px 36px,#FFB547 36px 48px);opacity:.9}
+.xtrack{display:flex;width:max-content;animation:xslide 32s linear infinite}
+.xbar:hover .xtrack{animation-play-state:paused}
+.xtrack span{display:inline-flex;align-items:center;gap:14px;padding:0 26px;font:700 14.5px var(--t);letter-spacing:.01em;white-space:nowrap}
+.xtrack span b{font-weight:800;color:#FFE08A}
+.xtrack i{font-style:normal;opacity:.9}
+@keyframes xslide{to{transform:translateX(-50%)}}
+.nav{top:calc(var(--xbar) + 14px)!important}
+.hero{padding-top:calc(140px + var(--xbar))}
+html{scroll-padding-top:calc(96px + var(--xbar))}
+/* snow */
+#snow{position:fixed;inset:0;z-index:65;pointer-events:none}
+/* christmas tag on price card */
+.xtag{position:absolute;top:22px;right:22px;display:inline-flex;align-items:center;gap:7px;background:#fff;color:#C8102E;font:800 12.5px var(--t);letter-spacing:.02em;padding:7px 12px;border-radius:999px;box-shadow:0 8px 20px -8px rgba(0,0,0,.5)}
+.pcard .xtag svg{width:14px;height:14px}
+/* popup */
+.xpop{position:fixed;inset:0;z-index:150;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.62);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);opacity:0;visibility:hidden;transition:opacity .35s,visibility .35s}
+.xpop.show{opacity:1;visibility:visible}
+.xcard{position:relative;width:min(520px,100%);border-radius:30px;overflow:hidden;background:#111;border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 100px -30px rgba(200,16,46,.7);transform:translateY(26px) scale(.96);transition:transform .5s cubic-bezier(.2,1.2,.3,1)}
+.xpop.show .xcard{transform:none}
+.xhead{position:relative;padding:34px 32px 30px;background:linear-gradient(135deg,#9E0B1F,#ED1C24 55%,#F47B20);overflow:hidden}
+.xhead:before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,#fff 1.4px,transparent 1.6px),radial-gradient(circle,rgba(255,255,255,.6) 1px,transparent 1.2px);background-size:46px 46px,28px 28px;background-position:0 0,14px 9px;opacity:.35}
+.xhead .tree{position:absolute;right:20px;bottom:-6px;width:110px;opacity:.95}
+.xkick{position:relative;display:inline-block;background:rgba(0,0,0,.22);border-radius:999px;padding:6px 12px;font:700 12.5px var(--t);letter-spacing:.04em;margin-bottom:14px}
+.xhead h3{position:relative;font:800 clamp(28px,6vw,42px)/1 var(--d);letter-spacing:-.035em;max-width:min(330px,calc(100% - 96px));font-variation-settings:"wdth" 90}
+.xbody{padding:26px 32px 30px}
+.xbody p{color:#cfcfcf;font-size:16px}
+.xlist{list-style:none;display:grid;gap:10px;margin:20px 0 26px}
+.xlist li{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#1b1b1b;border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:13px 16px;font-weight:600}
+.xlist li span{color:#9a9a9a;font-weight:500;font-size:14px}
+.xlist li b{font:800 20px var(--d);letter-spacing:-.02em}
+.xlist li s{color:#7c7c7c;font-size:14px;margin-left:6px}
+.xacts{display:flex;gap:10px;flex-wrap:wrap}
+.xacts .btn{height:52px}
+.xacts .later{background:none;border:1px solid rgba(255,255,255,.2);color:#ddd;cursor:pointer}
+.xclose{position:absolute;top:14px;right:14px;z-index:2;width:38px;height:38px;border-radius:50%;border:0;background:rgba(0,0,0,.28);color:#fff;font-size:22px;line-height:1;cursor:pointer}
+.xclose:hover{background:rgba(0,0,0,.45)}
+@media (max-width:640px){:root{--xbar:38px}.xtrack span{font-size:13px;padding:0 18px}.xhead{padding:30px 22px 24px}.xhead .tree{width:80px}.xbody{padding:22px 20px 24px}.xacts .btn{flex:1;justify-content:center}}
+@media (prefers-reduced-motion:reduce){.xtrack{animation:none}#snow{display:none}}
+
 /* bands */
 .bands{position:relative;height:250px;overflow:hidden;background:var(--coal);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .band{position:absolute;left:-5%;right:-5%;top:50%;padding:20px 0;overflow:hidden;white-space:nowrap}
@@ -447,6 +491,8 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
 
 </script>
 
+<a class="xbar" href="#pricing" aria-label="Christmas Sale: save up to 80% on all plans. See pricing."><div class="xtrack"><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$1,249</s></span><span><i>🎁</i> Online stores from <b>$949</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$1,249</s></span><span><i>🎁</i> Online stores from <b>$949</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$1,249</s></span><span><i>🎁</i> Online stores from <b>$949</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$1,249</s></span><span><i>🎁</i> Online stores from <b>$949</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span></div></a>
+<canvas id="snow" aria-hidden="true"></canvas>
 <header class="nav">
   <div class="wrap">
     <div class="pill">
@@ -710,8 +756,8 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
 <section class="pricing" id="pricing">
   <div class="wrap">
     <div class="center">
-      <h2 class="d rv">Our flexible <span class="g">pricing</span> packages</h2>
-      <p class="sub">Clear packages for every stage of your business. Pick a service, then a plan.</p>
+      <h2 class="d rv">Christmas <span class="g">pricing</span> packages</h2>
+      <p class="sub">Our Christmas Sale is on: every package is discounted for a limited time. Pick a service, then a plan.</p>
     </div>
     <div class="pbox">
       <div class="ptabs"><div class="tabs" id="ptabs" role="tablist"><i></i>
@@ -727,6 +773,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
           <svg class="pd" viewBox="0 0 220 120" fill="none" aria-hidden="true"><path d="M8 92c22-40 52-56 74-38s-8 52 22 50 40-70 70-74 34 30 38 44" stroke="url(#pdg)" stroke-width="10" stroke-linecap="round"/><circle cx="196" cy="24" r="12" fill="#FFB547"/><circle cx="18" cy="30" r="7" fill="#ED1C24"/><defs><linearGradient id="pdg" x1="0" x2="1"><stop stop-color="#ED1C24"/><stop offset="1" stop-color="#FFB547"/></linearGradient></defs></svg>
         </div>
         <div class="pcard" id="pcard">
+          <span class="xtag"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 4.9 5.4.8-3.9 3.8.9 5.4L12 14.4 7.2 16.9l.9-5.4L4.2 7.7l5.4-.8z"/></svg>Christmas price</span>
           <span class="pi"><svg viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.3-2 5-2 5s3.7-.5 5-2c.7-.8.7-2.1-.1-2.9a2.2 2.2 0 0 0-2.9-.1z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.9A12.9 12.9 0 0 1 22 2c0 2.7-.8 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.6-3 2-4c1.6-1.1 5 0 5 0M12 15v5s3-.6 4-2c1.1-1.6 0-5 0-5"/></svg></span>
           <div class="pn" id="pname">Basic</div>
           <div class="pp"><b><small>$</small><span id="pprice">250</span></b><s id="pwas">$1,249</s></div>
@@ -794,6 +841,26 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
   </div>
   <div class="giant" aria-hidden="true">marcom</div>
 </footer>
+
+<div class="xpop" id="xpop" role="dialog" aria-modal="true" aria-labelledby="xtitle" aria-hidden="true">
+  <div class="xcard">
+    <button class="xclose" type="button" aria-label="Close">&times;</button>
+    <div class="xhead"><svg class="tree" viewBox="0 0 100 110" aria-hidden="true"><path d="M50 4l9 18H41z" fill="#FFE08A"/><path d="M50 14 22 54h14L14 84h72L64 54h14z" fill="#1F8A4C"/><path d="M50 14 32 40h36z" fill="#27A35B"/><rect x="44" y="84" width="12" height="16" rx="2" fill="#7A3B12"/><circle cx="40" cy="50" r="3.4" fill="#FFE08A"/><circle cx="60" cy="62" r="3.4" fill="#fff"/><circle cx="34" cy="74" r="3.4" fill="#FFB547"/><circle cx="66" cy="76" r="3.4" fill="#FFE08A"/><circle cx="50" cy="66" r="3" fill="#fff"/></svg><span class="xkick">🎄 CHRISTMAS SALE</span><h3 id="xtitle">Our Christmas gift to your business</h3></div>
+    <div class="xbody">
+      <p>To celebrate Christmas, every Marcom Growth package is discounted, with savings of up to 80%. Here's where prices start:</p>
+      <ul class="xlist">
+        <li><span>Web Design</span><div><b>$250</b><s>$1,249</s></div></li>
+        <li><span>Online Stores</span><div><b>$949</b><s>$1,449</s></div></li>
+        <li><span>SEO</span><div><b>$449</b><s>$749</s></div></li>
+      </ul>
+      <div class="xacts">
+        <a class="btn hot" href="#pricing" data-x="go">See Christmas prices</a>
+        <button class="btn later" type="button" data-x="later">Maybe later</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script>
 document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
@@ -867,6 +934,36 @@ document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 document.getElementById('yr').textContent=new Date().getFullYear();
 </script>
 
+
+<script>
+(function(){
+  // Christmas popup: once per visit, a few seconds after the intro
+  var pop=document.getElementById('xpop');if(!pop)return;
+  var seen=false;try{seen=sessionStorage.getItem('mgXmas')==='1'}catch(e){}
+  var lastFocus=null;
+  function open(){if(seen)return;seen=true;try{sessionStorage.setItem('mgXmas','1')}catch(e){}
+    lastFocus=document.activeElement;pop.classList.add('show');pop.setAttribute('aria-hidden','false');
+    var b=pop.querySelector('[data-x=go]');b&&b.focus({preventScroll:true});}
+  function close(){pop.classList.remove('show');pop.setAttribute('aria-hidden','true');lastFocus&&lastFocus.focus&&lastFocus.focus({preventScroll:true});}
+  pop.addEventListener('click',function(e){if(e.target===pop||e.target.closest('.xclose')||e.target.closest('[data-x=later]'))close();if(e.target.closest('[data-x=go]'))close();});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&pop.classList.contains('show'))close();});
+  var introOn=document.documentElement.classList.contains('intro-on');
+  if(introOn){addEventListener('intro:done',function(){setTimeout(open,2500)},{once:true});setTimeout(open,9000);}else{setTimeout(open,3500);}
+})();
+(function(){
+  // light snowfall
+  var c=document.getElementById('snow');if(!c||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  var x=c.getContext('2d'),W,H,F=[],N=innerWidth<640?28:55,run=true;
+  function size(){W=c.width=innerWidth;H=c.height=innerHeight}size();addEventListener('resize',size);
+  for(var i=0;i<N;i++)F.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*2.2+.8,s:Math.random()*.6+.35,d:Math.random()*Math.PI*2,o:Math.random()*.5+.35});
+  document.addEventListener('visibilitychange',function(){run=!document.hidden;if(run)requestAnimationFrame(t)});
+  function t(){if(!run)return;x.clearRect(0,0,W,H);
+    for(var i=0;i<F.length;i++){var f=F[i];f.d+=.01;f.y+=f.s;f.x+=Math.sin(f.d)*.35;if(f.y>H+5){f.y=-5;f.x=Math.random()*W}
+      x.globalAlpha=f.o;x.beginPath();x.arc(f.x,f.y,f.r,0,6.283);x.fillStyle='#fff';x.fill();}
+    requestAnimationFrame(t);}
+  requestAnimationFrame(t);
+})();
+</script>
 <script type="importmap">{"imports":{"three":"./three.module.min.js"}}</script>
 <script type="module">
 import * as THREE from 'three';
