@@ -87,9 +87,9 @@ button,input,textarea{font:inherit;color:inherit}
 #chev canvas{position:absolute;inset:-12% -8% -12% -8%;width:116%!important;height:124%!important}
 #chev .fallback{position:absolute;inset:0;margin:auto;width:70%;opacity:0;transition:opacity .4s}
 #chev.nogl .fallback{opacity:1}
-.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:1}
-.blob.b1{width:520px;height:520px;background:#ED1C24;opacity:.32;right:4%;top:18%}
-.blob.b2{width:380px;height:380px;background:#FFB547;opacity:.16;right:26%;bottom:6%}
+.blob{position:absolute;border-radius:50%;pointer-events:none;z-index:1}
+.blob.b1{width:900px;height:900px;background:radial-gradient(circle,rgba(237,28,36,.42),rgba(237,28,36,.12) 40%,transparent 68%);right:-8%;top:-6%}
+.blob.b2{width:640px;height:640px;background:radial-gradient(circle,rgba(255,181,71,.2),transparent 65%);right:18%;bottom:-12%}
 .doodle{position:absolute;z-index:2;pointer-events:none}
 .doodle.d1{left:47%;top:63%;width:130px}
 .tri{position:absolute;z-index:2;width:0;height:0;border-left:16px solid transparent;border-right:16px solid transparent;border-bottom:28px solid var(--orange);transform:rotate(-24deg);left:52%;top:24%;filter:drop-shadow(0 6px 14px rgba(244,123,32,.6))}
@@ -175,8 +175,8 @@ button,input,textarea{font:inherit;color:inherit}
 .card{display:block;transition:opacity .35s,transform .35s}
 .card.hide{display:none}
 .tile{position:relative;border-radius:28px;background:var(--soft);padding:38px 34px 30px;overflow:hidden;isolation:isolate}
-.tile:before{content:"";position:absolute;z-index:-1;width:80%;aspect-ratio:1;border-radius:50%;left:10%;top:18%;background:var(--h,#F47B20);filter:blur(50px);opacity:.28;transition:opacity .4s,transform .6s}
-.card:hover .tile:before{opacity:.5;transform:scale(1.1)}
+.tile:before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(60% 55% at 50% 60%,color-mix(in srgb,var(--h,#F47B20) 38%,transparent),transparent 72%);opacity:.75;transition:opacity .4s}
+.card:hover .tile:before{opacity:1}
 .tile .laptop{transition:transform .6s cubic-bezier(.2,.9,.3,1)}
 .card:hover .tile .laptop{transform:translateY(-6px) scale(1.02)}
 .tile .laptop .lid{border-radius:12px 12px 3px 3px;box-shadow:0 0 0 1px #3a3a3c inset,0 26px 40px -22px rgba(0,0,0,.55)}
@@ -201,10 +201,10 @@ button,input,textarea{font:inherit;color:inherit}
 .rock p{font-size:18.5px;max-width:440px;margin:26px 0 34px;color:#2a1208}
 .rock .ctas{display:flex;gap:12px;flex-wrap:wrap}
 .rock .btn.white{box-shadow:none}
-.rock .laptop{transform:perspective(1600px) rotateY(-16deg) rotateX(5deg) rotateZ(-2deg);filter:drop-shadow(0 40px 50px rgba(80,10,0,.45))}
-.rock .shape{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,#fff3,transparent 60%),#ED1C24;mix-blend-mode:multiply;opacity:.6}
+.rock .laptop{transform:perspective(1600px) rotateY(-16deg) rotateX(5deg) rotateZ(-2deg)}
+.rock .shape{position:absolute;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ff6b4a,#C8121A 70%);opacity:.55}
 .rock .s1{width:340px;height:340px;left:-80px;bottom:-140px}
-.rock .s2{width:180px;height:180px;right:38%;top:-60px;background:radial-gradient(circle at 30% 30%,#fff5,transparent 60%),#FFB547;mix-blend-mode:normal;opacity:.7}
+.rock .s2{width:180px;height:180px;right:38%;top:-60px;background:radial-gradient(circle at 30% 30%,#ffe0a8,#FFB547 70%);opacity:.7}
 
 /* process */
 .proc{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:70px;align-items:start}
@@ -301,6 +301,8 @@ html.intro-on #chev{transform:scale(.6) rotate(-12deg);opacity:0}
 #chev{transition:transform 1.4s cubic-bezier(.2,1.2,.3,1) .1s,opacity .8s .1s}
 @media (prefers-reduced-motion:reduce){#intro{display:none}}
 
+.work,.rock,#process,#faq,footer{content-visibility:auto;contain-intrinsic-size:auto 1200px}
+.band .t{will-change:transform}
 /* reveal for big headings only */
 .rv{opacity:0;transform:translateY(40px);transition:opacity 1s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
@@ -353,7 +355,7 @@ html.intro-on #chev{transform:scale(.6) rotate(-12deg);opacity:0}
 
 <script>
 (function(){var f=/[?&]intro/.test(location.search),seen=false;try{seen=sessionStorage.getItem('mgIntro')==='1'}catch(e){}
-if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.documentElement.classList.add('no-intro')}else{document.documentElement.classList.add('intro-on')}})();
+if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.documentElement.classList.add('no-intro')}else{document.documentElement.classList.add('intro-on');setTimeout(function(){document.documentElement.classList.remove('intro-on')},5200)}})();
 </script>
 <div id="intro" aria-hidden="true">
   <div class="layer l-grad"></div>
@@ -377,6 +379,29 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
     <div class="bar" id="ibar"></div>
   </div>
 </div>
+<script>
+// intro sequence
+(function(){
+  const root=document.documentElement,el=document.getElementById('intro');
+  if(!root.classList.contains('intro-on')){el.classList.add('i-done');return}
+  const num=document.getElementById('inum'),bar=document.getElementById('ibar');
+  let ended=false;
+  const finish=()=>{if(ended)return;ended=true;try{sessionStorage.setItem('mgIntro','1')}catch(e){}
+    el.classList.add('i-out');
+    setTimeout(()=>root.classList.remove('intro-on'),420);
+    setTimeout(()=>{el.classList.add('i-done');dispatchEvent(new Event('intro:done'))},1300);};
+  el.querySelector('.skip').addEventListener('click',finish);
+  addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Enter'||e.key===' ')finish()},{once:true});
+  requestAnimationFrame(()=>el.classList.add('i-play'));
+  const D=1900,t0=performance.now();
+  const fontsReady=(document.fonts?document.fonts.ready:Promise.resolve());
+  let fontsOk=false;fontsReady.then(()=>fontsOk=true);setTimeout(()=>fontsOk=true,1500);
+  (function tick(t){if(ended)return;const k=Math.min((t-t0)/D,1),e=1-Math.pow(1-k,2.2);
+    num.textContent=Math.round(e*100);bar.style.transform='scaleX('+e+')';
+    if(k<1||!fontsOk)requestAnimationFrame(tick);else setTimeout(finish,380);})(t0);
+})();
+
+</script>
 
 <header class="nav">
   <div class="wrap">
@@ -441,8 +466,8 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
 </section>
 
 <div class="bands" aria-hidden="true">
-  <div class="band b"><div class="t" id="bandB"></div></div>
-  <div class="band a"><div class="t" id="bandA"></div></div>
+  <div class="band b"><div class="t" id="bandB"><span>Smarter Builder</span><span>NYC Ultimate Party Bus</span><span>Festive Events by Natalya</span><span>Luxury Balloon Decor</span><span>Hallow Health &amp; Psychiatric Services</span><span>Mad Max Academy</span><span>Dan&#x27;s Furry Kids</span><span>Kimwell Tax Services</span><span>T Systems</span><span>Al-Quraysh Supermarket</span><span>Power Plus Herbal</span><span>Smarter Builder</span><span>NYC Ultimate Party Bus</span><span>Festive Events by Natalya</span><span>Luxury Balloon Decor</span><span>Hallow Health &amp; Psychiatric Services</span><span>Mad Max Academy</span><span>Dan&#x27;s Furry Kids</span><span>Kimwell Tax Services</span><span>T Systems</span><span>Al-Quraysh Supermarket</span><span>Power Plus Herbal</span></div></div>
+  <div class="band a"><div class="t" id="bandA"><span>Clearo Cleaning Solutions</span><span>Paul&#x27;s Cleaning Services</span><span>H&amp;D Home Care &amp; Cleaning</span><span>Your Home So Clean</span><span>Handy Home Heroes</span><span>Meraki Floors &amp; Remodeling</span><span>Scotty Hartas Painting</span><span>El Candado Locksmith</span><span>McNeese Home Inspections</span><span>Beyond Vision Design</span><span>Perth Property Adviser</span><span>Clearo Cleaning Solutions</span><span>Paul&#x27;s Cleaning Services</span><span>H&amp;D Home Care &amp; Cleaning</span><span>Your Home So Clean</span><span>Handy Home Heroes</span><span>Meraki Floors &amp; Remodeling</span><span>Scotty Hartas Painting</span><span>El Candado Locksmith</span><span>McNeese Home Inspections</span><span>Beyond Vision Design</span><span>Perth Property Adviser</span></div></div>
 </div>
 
 <section class="sec center" id="services">
@@ -464,7 +489,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <a class="btn hot" href="#contact">Start your project</a>
       </div>
       <div class="stage"><div class="orb"></div>
-        <div class="laptop"><div class="lid"><div class="scr"><img src="luxuryballoon.jpg" alt="Luxury Balloon Decor website"></div></div><div class="base"></div></div>
+        <div class="laptop"><div class="lid"><div class="scr"><img src="luxuryballoon.webp" width="960" height="600" decoding="async" alt="Luxury Balloon Decor website"></div></div><div class="base"></div></div>
         <div class="chip"><b>Luxury Balloon Decor</b>Vancouver, Canada</div>
       </div>
     </div>
@@ -478,7 +503,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <a class="btn hot" href="#contact">Start your project</a>
       </div>
       <div class="stage"><div class="orb"></div>
-        <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.jpg" alt="Al-Quraysh Supermarket website" loading="lazy"></div></div><div class="base"></div></div>
+        <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.webp" width="960" height="600" decoding="async" alt="Al-Quraysh Supermarket website" loading="lazy"></div></div><div class="base"></div></div>
         <div class="chip"><b>Al-Quraysh Supermarket</b>Peterborough, UK</div>
       </div>
     </div>
@@ -492,7 +517,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <a class="btn hot" href="#contact">Start your project</a>
       </div>
       <div class="stage"><div class="orb"></div>
-        <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.jpg" alt="NYC Ultimate Party Bus website" loading="lazy"></div></div><div class="base"></div></div>
+        <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.webp" width="960" height="600" decoding="async" alt="NYC Ultimate Party Bus website" loading="lazy"></div></div><div class="base"></div></div>
         <div class="chip"><b>NYC Ultimate Party Bus</b>New York, USA</div>
       </div>
     </div>
@@ -503,8 +528,119 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
   <div class="wrap">
     <h2 class="d rv">Some of our <span class="g">best work</span><br>we're proud of!</h2>
     <p class="sub">22 live websites for real businesses. Pick your industry and see what we have built for businesses like yours.</p>
-    <div class="filters" id="filters"></div>
-    <div class="grid" id="grid"></div>
+    <div class="filters" id="filters"><button class="on" data-f="all">All work<sup>22</sup></button><button data-f="cleaning">Cleaning<sup>4</sup></button><button data-f="trades">Home services &amp; trades<sup>5</sup></button><button data-f="property">Property &amp; building<sup>3</sup></button><button data-f="events">Events &amp; hospitality<sup>3</sup></button><button data-f="health">Health, fitness &amp; pets<sup>3</sup></button><button data-f="pro">Professional services<sup>2</sup></button><button data-f="stores">Online stores<sup>2</sup></button></div>
+    <div class="grid" id="grid">
+<a class="card" data-n="cleaning" href="https://clearocleaningsolutions.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="clearo.webp" alt="Clearo Cleaning Solutions website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Clearo Cleaning Solutions</h3><p>Powell &amp; Dublin, Ohio</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="cleaning" href="https://paulscleaningservices.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="pauls.webp" alt="Paul&#x27;s Cleaning Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Paul&#x27;s Cleaning Services</h3><p>Pompano Beach, Florida</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="cleaning" href="https://hdhomecarecleaning.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="hdhomecare.webp" alt="H&amp;D Home Care &amp; Cleaning website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>H&amp;D Home Care &amp; Cleaning</h3><p>Bucksport, Maine</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="cleaning" href="https://yourhomesoclean.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="yourhomesoclean.webp" alt="Your Home So Clean website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Your Home So Clean</h3><p>Lawrence Township, New Jersey</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="trades" href="https://handyhomeheroes.services" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="handy.webp" alt="Handy Home Heroes website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Handy Home Heroes</h3><p>Perth, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="trades" href="https://merakifloors.net" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="meraki.webp" alt="Meraki Floors &amp; Remodeling website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Meraki Floors &amp; Remodeling</h3><p>Sykesville, Maryland</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="trades" href="https://scottyhartaspainting.com.au" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="scotty.webp" alt="Scotty Hartas Painting website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Scotty Hartas Painting</h3><p>Brisbane, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="trades" href="https://elcandadolocksmithiii.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="elcandado.webp" alt="El Candado Locksmith website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>El Candado Locksmith</h3><p>El Paso, Texas</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="trades" href="https://mcneesehomeinspections.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="mcneese.webp" alt="McNeese Home Inspections website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>McNeese Home Inspections</h3><p>Huntsville, Alabama</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="property" href="https://beyondvisiondesign.com.au" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#8C6BFF"><span class="ind">Property &amp; building</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.webp" alt="Beyond Vision Design website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Beyond Vision Design</h3><p>Sydney, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="property" href="https://perthpropertyadviser.com.au" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#8C6BFF"><span class="ind">Property &amp; building</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="perthproperty.webp" alt="Perth Property Adviser website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Perth Property Adviser</h3><p>Perth, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="property" href="https://smarterbuilder.com.au" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#8C6BFF"><span class="ind">Property &amp; building</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="smarter.webp" alt="Smarter Builder website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Smarter Builder</h3><p>Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="events" href="https://nycultimatepartybus.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#FF4FA3"><span class="ind">Events &amp; hospitality</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.webp" alt="NYC Ultimate Party Bus website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>NYC Ultimate Party Bus</h3><p>New York, USA</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="events" href="https://festiveeventsbynatalya.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#FF4FA3"><span class="ind">Events &amp; hospitality</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="festive.webp" alt="Festive Events by Natalya website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Festive Events by Natalya</h3><p>New Jersey, USA</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="events" href="https://luxuryballoondecor.ca" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#FF4FA3"><span class="ind">Events &amp; hospitality</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="luxuryballoon.webp" alt="Luxury Balloon Decor website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Luxury Balloon Decor</h3><p>Vancouver, Canada</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="health" href="https://hallowhealthservices.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#21C47B"><span class="ind">Health, fitness &amp; pets</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="hallow.webp" alt="Hallow Health &amp; Psychiatric Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Hallow Health &amp; Psychiatric Services</h3><p>New Lenox, Illinois</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="health" href="https://madmaxacademymma.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#21C47B"><span class="ind">Health, fitness &amp; pets</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="madmax.webp" alt="Mad Max Academy website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Mad Max Academy</h3><p>Columbus, Ohio</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="health" href="https://dansfurrykids.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#21C47B"><span class="ind">Health, fitness &amp; pets</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="dansfurry.webp" alt="Dan&#x27;s Furry Kids website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Dan&#x27;s Furry Kids</h3><p>Thornlands, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="pro" href="https://kimwelltaxservices.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#2D6BFF"><span class="ind">Professional services</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="kimwell.webp" alt="Kimwell Tax Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Kimwell Tax Services</h3><p>Fort Worth, Texas</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="pro" href="https://tsystems.com.au" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#2D6BFF"><span class="ind">Professional services</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="tsystems.webp" alt="T Systems website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>T Systems</h3><p>Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="stores" href="https://alqurayshsupermarket.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#ED1C24"><span class="ind">Online stores</span><span class="shop">Online store</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.webp" alt="Al-Quraysh Supermarket website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Al-Quraysh Supermarket</h3><p>Peterborough, UK</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+<a class="card" data-n="stores" href="https://powerplusherbal.com" target="_blank" rel="noopener">
+  <div class="tile" style="--h:#ED1C24"><span class="ind">Online stores</span><span class="shop">Online store</span>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="powerplus.webp" alt="Power Plus Herbal website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+  <div class="cinfo"><div><h3>Power Plus Herbal</h3><p>Herbal wellness store</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
+</a>
+</div>
   </div>
 </section>
 
@@ -520,7 +656,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
           <a class="btn white" href="tel:+12818052090">Call +1 (281) 805 2090</a>
         </div>
       </div>
-      <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.jpg" alt="Beyond Vision Design website" loading="lazy"></div></div><div class="base"></div></div>
+      <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.webp" width="960" height="600" decoding="async" alt="Beyond Vision Design website" loading="lazy"></div></div><div class="base"></div></div>
     </div>
   </div>
 </section>
@@ -579,37 +715,10 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
 </footer>
 
 <script>
-const N=[
- {id:"cleaning",name:"Cleaning",h:"#3BA7FF",sites:[["clearo","Clearo Cleaning Solutions","Powell & Dublin, Ohio","clearocleaningsolutions.com"],["pauls","Paul's Cleaning Services","Pompano Beach, Florida","paulscleaningservices.com"],["hdhomecare","H&D Home Care & Cleaning","Bucksport, Maine","hdhomecarecleaning.com"],["yourhomesoclean","Your Home So Clean","Lawrence Township, New Jersey","yourhomesoclean.com"]]},
- {id:"trades",name:"Home services & trades",h:"#F47B20",sites:[["handy","Handy Home Heroes","Perth, Australia","handyhomeheroes.services"],["meraki","Meraki Floors & Remodeling","Sykesville, Maryland","merakifloors.net"],["scotty","Scotty Hartas Painting","Brisbane, Australia","scottyhartaspainting.com.au"],["elcandado","El Candado Locksmith","El Paso, Texas","elcandadolocksmithiii.com"],["mcneese","McNeese Home Inspections","Huntsville, Alabama","mcneesehomeinspections.com"]]},
- {id:"property",name:"Property & building",h:"#8C6BFF",sites:[["beyond","Beyond Vision Design","Sydney, Australia","beyondvisiondesign.com.au"],["perthproperty","Perth Property Adviser","Perth, Australia","perthpropertyadviser.com.au"],["smarter","Smarter Builder","Australia","smarterbuilder.com.au"]]},
- {id:"events",name:"Events & hospitality",h:"#FF4FA3",sites:[["nycbus","NYC Ultimate Party Bus","New York, USA","nycultimatepartybus.com"],["festive","Festive Events by Natalya","New Jersey, USA","festiveeventsbynatalya.com"],["luxuryballoon","Luxury Balloon Decor","Vancouver, Canada","luxuryballoondecor.ca"]]},
- {id:"health",name:"Health, fitness & pets",h:"#21C47B",sites:[["hallow","Hallow Health & Psychiatric Services","New Lenox, Illinois","hallowhealthservices.com"],["madmax","Mad Max Academy","Columbus, Ohio","madmaxacademymma.com"],["dansfurry","Dan's Furry Kids","Thornlands, Australia","dansfurrykids.com"]]},
- {id:"pro",name:"Professional services",h:"#2D6BFF",sites:[["kimwell","Kimwell Tax Services","Fort Worth, Texas","kimwelltaxservices.com"],["tsystems","T Systems","Australia","tsystems.com.au"]]},
- {id:"stores",name:"Online stores",h:"#ED1C24",store:true,sites:[["alquraysh","Al-Quraysh Supermarket","Peterborough, UK","alqurayshsupermarket.com"],["powerplus","Power Plus Herbal","Herbal wellness store","powerplusherbal.com"]]}
-];
-const total=N.reduce((a,n)=>a+n.sites.length,0);
-const esc=s=>s.replace(/&/g,"&amp;");
-document.getElementById('filters').innerHTML=`<button class="on" data-f="all">All work<sup>${total}</sup></button>`+N.map(n=>`<button data-f="${n.id}">${n.name}<sup>${n.sites.length}</sup></button>`).join('');
-document.getElementById('grid').innerHTML=N.map(n=>n.sites.map(([img,name,where,dom])=>`
-<a class="card" data-n="${n.id}" href="https://${dom}" target="_blank" rel="noopener">
-  <div class="tile" style="--h:${n.h}">
-    <span class="ind">${n.name}</span>${n.store?'<span class="shop">Online store</span>':''}
-    <div class="laptop"><div class="lid"><div class="scr"><img src="${img}.jpg" alt="${esc(name)} website" loading="lazy" width="1264" height="790"></div></div><div class="base"></div></div>
-  </div>
-  <div class="cinfo"><div><h3>${esc(name)}</h3><p>${where}</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
-</a>`).join('')).join('');
 document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
   document.querySelectorAll('.card').forEach(c=>c.classList.toggle('hide',b.dataset.f!=='all'&&c.dataset.n!==b.dataset.f));
 });
-
-// client name bands
-const names=N.flatMap(n=>n.sites.map(s=>s[1]));
-const half=Math.ceil(names.length/2);
-const line=a=>{const h=a.map(x=>`<span>${esc(x)}</span>`).join('');return h+h};
-document.getElementById('bandA').innerHTML=line(names.slice(0,half));
-document.getElementById('bandB').innerHTML=line(names.slice(half));
 
 // tabs
 const tabs=[...document.querySelectorAll('.tabs button')],ind=document.querySelector('.tabs i');
@@ -632,7 +741,7 @@ function leadForm(f,label){
     const label0=btn.innerHTML;btn.disabled=true;btn.innerHTML='Sending...';
     try{
       await fetch(LEADS_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams({...d,form:label,page:location.href})});
-      f.reset();btn.innerHTML='Sent \u2713';say('Thanks! We've got your details and will be in touch soon.',true);
+      f.reset();btn.innerHTML='Sent \u2713';say("Thanks! We've got your details and will be in touch soon.",true);
       setTimeout(()=>{btn.innerHTML=label0;btn.disabled=false},4000);
     }catch(err){
       btn.innerHTML=label0;btn.disabled=false;
@@ -642,27 +751,6 @@ function leadForm(f,label){
 }
 leadForm(document.getElementById('talkForm'),'Top form');leadForm(document.getElementById('footForm'),'Footer form');
 
-
-// intro sequence
-(function(){
-  const root=document.documentElement,el=document.getElementById('intro');
-  if(!root.classList.contains('intro-on')){el.classList.add('i-done');return}
-  const num=document.getElementById('inum'),bar=document.getElementById('ibar');
-  let ended=false;
-  const finish=()=>{if(ended)return;ended=true;try{sessionStorage.setItem('mgIntro','1')}catch(e){}
-    el.classList.add('i-out');
-    setTimeout(()=>root.classList.remove('intro-on'),420);
-    setTimeout(()=>el.classList.add('i-done'),1300);};
-  el.querySelector('.skip').addEventListener('click',finish);
-  addEventListener('keydown',e=>{if(e.key==='Escape'||e.key==='Enter'||e.key===' ')finish()},{once:true});
-  requestAnimationFrame(()=>el.classList.add('i-play'));
-  const D=1900,t0=performance.now();
-  const fontsReady=(document.fonts?document.fonts.ready:Promise.resolve());
-  let fontsOk=false;fontsReady.then(()=>fontsOk=true);setTimeout(()=>fontsOk=true,1500);
-  (function tick(t){if(ended)return;const k=Math.min((t-t0)/D,1),e=1-Math.pow(1-k,2.2);
-    num.textContent=Math.round(e*100);bar.style.transform='scaleX('+e+')';
-    if(k<1||!fontsOk)requestAnimationFrame(tick);else setTimeout(finish,380);})(t0);
-})();
 
 // heading reveal
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.2});
@@ -675,9 +763,10 @@ document.getElementById('yr').textContent=new Date().getFullYear();
 import * as THREE from 'three';
 import {RoomEnvironment} from './RoomEnvironment.js';
 const host=document.getElementById('chev');
+function startGL(){
 try{
   const r=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
-  r.setPixelRatio(Math.min(devicePixelRatio,2));
+  r.setPixelRatio(Math.min(devicePixelRatio,1.5));
   r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.05;
   host.appendChild(r.domElement);
   const scene=new THREE.Scene();
@@ -711,6 +800,9 @@ try{
     g.position.y=reduce?0:Math.sin(s*.9)*.12;
     r.render(scene,cam)})(t0);
 }catch(err){host.classList.add('nogl')}
+}
+const go=()=>('requestIdleCallback' in window?requestIdleCallback(startGL,{timeout:600}):setTimeout(startGL,50));
+if(document.documentElement.classList.contains('intro-on'))addEventListener('intro:done',go,{once:true});else go();
 </script>
 </body>
 </html>
