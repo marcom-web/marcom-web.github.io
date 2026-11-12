@@ -113,6 +113,9 @@ button,input,textarea{font:inherit;color:inherit}
 .talk .btn{height:58px;padding:0 38px;border:0;cursor:pointer;justify-content:center}
 .note{font-size:13.5px;color:#8a8a8a;margin-top:14px}
 
+.hp{position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0}
+.fnote.ok{color:#7be08a}.fnote.bad{color:#ff8a7a}
+.btn:disabled{opacity:.7;cursor:wait}
 /* bands */
 .bands{position:relative;height:250px;overflow:hidden;background:var(--coal);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .band{position:absolute;left:-5%;right:-5%;top:50%;padding:20px 0;overflow:hidden;white-space:nowrap}
@@ -430,9 +433,10 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
       <input class="field" name="name" placeholder="Name" required aria-label="Name">
       <input class="field" name="email" type="email" placeholder="Email" required aria-label="Email">
       <input class="field" name="phone" placeholder="Phone" aria-label="Phone">
+      <input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
       <button class="btn hot" type="submit">Send</button>
     </form>
-    <p class="note">Opens your email app with your details filled in, addressed to info@marcomgrowth.com.</p>
+    <p class="note fnote" aria-live="polite">Leave your details and we'll get back to you. No spam, ever.</p>
   </div>
 </section>
 
@@ -562,10 +566,12 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <input class="field full" name="name" placeholder="Name" required aria-label="Name">
         <input class="field" name="email" type="email" placeholder="Email" required aria-label="Email">
         <input class="field" name="phone" placeholder="Phone" aria-label="Phone">
+        <input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <textarea class="field full" name="msg" placeholder="Tell us about your business and what you need" aria-label="Project description"></textarea>
         <button class="btn hot" type="submit">Send message
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17 17 7M8 7h9v9"/></svg></button>
       </form>
+      <p class="fnote" aria-live="polite" style="margin-top:14px;font-size:14.5px"></p>
     </div>
     <div class="legal"><span>© <span id="yr">2026</span> Marcom Growth. All rights reserved.</span><a href="https://marcomgrowth.com" target="_blank" rel="noopener">marcomgrowth.com</a></div>
   </div>
@@ -615,11 +621,26 @@ placeOn();addEventListener('resize',placeOn);document.fonts&&document.fonts.read
 // faq
 document.querySelectorAll('.q button').forEach(b=>b.onclick=()=>{const q=b.parentElement,o=q.classList.contains('open');document.querySelectorAll('.q').forEach(x=>x.classList.remove('open'));if(!o)q.classList.add('open')});
 
-// forms -> email
-function mailForm(f){f.addEventListener('submit',e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f));
-  const body=`Name: ${d.name||''}\nEmail: ${d.email||''}\nPhone: ${d.phone||''}\n\n${d.msg||''}`;
-  location.href=`mailto:info@marcomgrowth.com?subject=${encodeURIComponent('New website project - '+(d.name||''))}&body=${encodeURIComponent(body)}`;})}
-mailForm(document.getElementById('talkForm'));mailForm(document.getElementById('footForm'));
+// forms -> Google Sheet (Apps Script web app)
+const LEADS_URL='https://script.google.com/macros/s/AKfycbxtE2lOUd-QyVFzR4cw4LbeoNDu6DwC1L6j1IqD0jtoxsXU-BFloOtqiNPrSubJ8Fqd2g/exec';
+function leadForm(f,label){
+  const btn=f.querySelector('button[type=submit]'),note=f.parentElement.querySelector('.fnote');
+  f.addEventListener('submit',async e=>{e.preventDefault();
+    const d=Object.fromEntries(new FormData(f));
+    const say=(t,ok)=>{if(note){note.textContent=t;note.className='fnote '+(ok?'ok':'bad')}};
+    if(!(d.name||'').trim()||!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(d.email||'')){say('Please add your name and a valid email.',false);return}
+    const label0=btn.innerHTML;btn.disabled=true;btn.innerHTML='Sending...';
+    try{
+      await fetch(LEADS_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams({...d,form:label,page:location.href})});
+      f.reset();btn.innerHTML='Sent \u2713';say('Thanks! We've got your details and will be in touch soon.',true);
+      setTimeout(()=>{btn.innerHTML=label0;btn.disabled=false},4000);
+    }catch(err){
+      btn.innerHTML=label0;btn.disabled=false;
+      say('Something went wrong. Please email info@marcomgrowth.com or call +1 (281) 805 2090.',false);
+    }
+  });
+}
+leadForm(document.getElementById('talkForm'),'Top form');leadForm(document.getElementById('footForm'),'Footer form');
 
 
 // intro sequence
