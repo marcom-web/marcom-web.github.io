@@ -6,6 +6,7 @@
 <title>Project brief | Marcom Growth</title>
 <meta name="description" content="Tell Marcom Growth about your website project. Takes about two minutes.">
 <meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="figtree-400.woff2" as="font" type="font/woff2" crossorigin>
@@ -53,7 +54,9 @@ select.field option,select.field optgroup{background:#1c1c1c;color:#fff}
 .btn:hover{transform:translateY(-2px)}
 .btn:disabled{opacity:.6;cursor:wait;transform:none}
 .note{color:var(--mute);font-size:15px}
-.msg{margin-top:18px;font-size:16px;min-height:24px}
+.consent{margin-top:16px;color:var(--mute);font-size:14px}
+.consent a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+.msg{margin-top:12px;font-size:16px;min-height:24px}
 .msg.err{color:#ff8a8a}
 .done{display:none;padding:56px 0 0}
 .done h2{font-family:var(--d);font-weight:700;font-size:clamp(34px,5vw,52px);letter-spacing:-.03em;line-height:1}
@@ -62,7 +65,7 @@ select.field option,select.field optgroup{background:#1c1c1c;color:#fff}
 body.sent form,body.sent .intro{display:none}
 body.sent .done{display:block}
 footer{border-top:1px solid var(--line);max-width:880px;margin:0 auto;padding:18px 24px 30px;color:var(--mute);font-size:14px;display:flex;flex-wrap:wrap;align-items:center;gap:0 22px}
-footer a{text-decoration:none;padding:10px 0}
+footer a{text-decoration:none;display:inline-flex;align-items:center;min-height:44px}
 footer a:hover{color:#fff}
 @media (max-width:560px){main{padding-top:40px}.q{font-size:20px}.chip span{height:44px;padding:0 16px;font-size:15px}.btn{width:100%}}
 @media (prefers-reduced-motion:reduce){.btn{transition:none}}
@@ -187,6 +190,7 @@ footer a:hover{color:#fff}
 <button class="btn" type="submit" id="go">Send my brief</button>
 <span class="note">Or call +1 (281) 805 2090</span>
 </div>
+<p class="consent">By sending your brief you agree to our <a href="privacy.html">privacy policy</a>.</p>
 <p class="msg" id="msg" role="status" aria-live="polite"></p>
 </form>
 
@@ -203,6 +207,7 @@ footer a:hover{color:#fff}
 <a href="mailto:sales@marcomgrowth.com">sales@marcomgrowth.com</a>
 <a href="https://www.instagram.com/marcomgrowthllc" rel="noopener">Instagram</a>
 <a href="https://www.facebook.com/profile.php?id=61596092339354" rel="noopener">Facebook</a>
+<a href="privacy.html">Privacy policy</a>
 </footer>
 
 <script>
