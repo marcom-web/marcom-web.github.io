@@ -18,7 +18,8 @@
 <meta name="twitter:description" content="23 live client websites for service businesses and online stores.">
 <meta name="twitter:image" content="https://marcom-web.github.io/og-image.jpg">
 <meta name="theme-color" content="#000000">
-<link rel="icon" type="image/png" href="mark.png">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="preload" href="bricolage.woff2" as="font" type="font/woff2" crossorigin>
 <style>
 @font-face{font-family:Bricolage;src:url(bricolage.woff2) format("woff2-variations"),url(bricolage.woff2) format("woff2");font-weight:200 800;font-stretch:75% 100%;font-display:swap}
@@ -350,6 +351,7 @@ footer h2{font-size:clamp(40px,4.4vw,62px)}
 .fform .btn{border:0;cursor:pointer;justify-self:start}
 .legal{grid-column:1/-1;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px;margin-top:40px;color:#7d7d7d;font-size:14px}
 .legal a:hover{color:#fff}
+.giant:before{content:"marcom"}
 .giant{font:800 clamp(80px,17vw,250px)/.8 var(--d);letter-spacing:-.06em;text-align:center;color:#000;text-shadow:1.5px 0 #1d1d1d,-1.5px 0 #1d1d1d,0 1.5px #1d1d1d,0 -1.5px #1d1d1d;margin-top:70px;white-space:nowrap;user-select:none}
 
 
@@ -444,6 +446,35 @@ html.intro-on #chev{transform:scale(.6) rotate(-12deg);opacity:0}
   .bands{height:190px}
   .band span{font-size:18px}
 }
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+/* responsive polish */
+.tile{padding-top:58px}
+.tile .ind,.tile .shop{z-index:3}
+@media (max-width:1080px){
+  .stage{max-width:620px;width:100%;margin:0 auto;padding:30px 7% 40px}
+  .stage .orb{right:0}
+  #chev canvas{inset:-12% 0;width:100%!important}
+  .flinks a{padding:6px 0}
+}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+@media (min-width:901px) and (max-width:1080px){
+  .hero{padding-top:170px}
+  .hero .wrap{grid-template-columns:1.1fr .9fr;min-height:0}
+  #chev{order:0;height:420px;margin:0}
+  .hero h1{font-size:clamp(54px,7.4vw,84px)}
+}
+@media (max-width:640px){
+  .filters{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;margin:34px -18px 44px;padding:2px 18px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity;mask-image:linear-gradient(90deg,transparent,#000 18px,#000 calc(100% - 28px),transparent)}
+  .filters::-webkit-scrollbar{display:none}
+  .filters button{flex:none;scroll-snap-align:start;height:44px;padding:0 16px;font-size:14.5px}
+  .pill img{width:auto}
+  .tile{padding-top:52px}
+  .flinks{gap:4px 24px}
+}
+@media (max-width:360px){
+  .tabs button{font-size:12.5px;padding:0 4px}
+  .ptabs .tabs button{font-size:12.5px;padding:0 4px}
+}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -453,11 +484,11 @@ html.intro-on #chev{transform:scale(.6) rotate(-12deg);opacity:0}
 (function(){var f=/[?&]intro/.test(location.search),seen=false;try{seen=sessionStorage.getItem('mgIntro')==='1'}catch(e){}
 if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.documentElement.classList.add('no-intro')}else{document.documentElement.classList.add('intro-on');setTimeout(function(){document.documentElement.classList.remove('intro-on')},5200)}})();
 </script>
-<div id="intro" aria-hidden="true">
+<div id="intro">
   <div class="layer l-grad"></div>
   <div class="layer l-ink">
     <div class="lock">
-      <svg class="mk" viewBox="-1.75 -1.4 3.65 2.8">
+      <svg class="mk" aria-hidden="true" viewBox="-1.75 -1.4 3.65 2.8">
         <defs>
           <linearGradient id="ig1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ED1C24"/><stop offset=".7" stop-color="#F25A22"/><stop offset="1" stop-color="#F47B20"/></linearGradient>
           <linearGradient id="ig2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#F47B20"/><stop offset="1" stop-color="#ED1C24"/></linearGradient>
@@ -468,11 +499,11 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <polygon class="p2" fill="url(#ig2)" points="-1.55,1.25 -0.78,1.25 0.2,0.18 -0.18,-0.18"/>
         <g clip-path="url(#mclip)"><rect class="shine" x="-1.8" y="-1.4" width="1.2" height="2.8" fill="url(#sh)" transform="skewX(-20)"/></g>
       </svg>
-      <div class="word"><span><i>MARCOM</i></span><span><i>GROWTH</i></span></div>
+      <div class="word" aria-hidden="true"><span><i>MARCOM</i></span><span><i>GROWTH</i></span></div>
     </div>
     <button class="skip" type="button">Skip intro</button>
-    <div class="foot"><span class="tag">Websites that win customers</span><span class="num"><b id="inum">0</b><sup>%</sup></span></div>
-    <div class="bar" id="ibar"></div>
+    <div class="foot" aria-hidden="true"><span class="tag">Websites that win customers</span><span class="num"><b id="inum">0</b><sup>%</sup></span></div>
+    <div class="bar" id="ibar" aria-hidden="true"></div>
   </div>
 </div>
 <script>
@@ -499,7 +530,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
 
 </script>
 
-<a class="xbar" href="#pricing" aria-label="Christmas Sale: save up to 80% on all plans. See pricing."><div class="xtrack"><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span></div></a>
+<a class="xbar" href="#pricing"><span class="sr">Christmas Sale is live: save up to 80% on all plans. See pricing</span><div class="xtrack" aria-hidden="true"><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span><span><i>🎄</i> Christmas Sale is live: <b>save up to 80%</b> on all plans</span><span><i>❄️</i> Websites from <b>$250</b> <s style="opacity:.7">$599</s></span><span><i>🎁</i> Online stores from <b>$399</b></span><span><i>⭐</i> SEO packages from <b>$449</b></span><span><i>🔔</i> Limited-time Christmas offer, claim yours today</span></div></a>
 <canvas id="snow" aria-hidden="true"></canvas>
 <header class="nav">
   <div class="wrap">
@@ -548,7 +579,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></a>
       </div>
     </div>
-    <div id="chev" aria-hidden="true"><img class="fallback" src="mark.png" alt=""></div>
+    <div id="chev" aria-hidden="true"><img class="fallback" data-src="mark.webp" alt=""></div>
   </div>
 </section>
 
@@ -590,7 +621,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <a class="btn hot" href="#contact">Start your project</a>
       </div>
       <div class="stage"><div class="orb"></div>
-        <div class="laptop"><div class="lid"><div class="scr"><img src="weuno.webp" width="960" height="600" decoding="async" alt="WeUno website"></div></div><div class="base"></div></div>
+        <div class="laptop"><div class="lid"><div class="scr"><img src="weuno.webp" srcset="weuno-640.webp 640w, weuno.webp 960w" sizes="(max-width:900px) min(600px,92vw), 560px" width="960" height="600" decoding="async" alt="WeUno website"></div></div><div class="base"></div></div>
         <div class="chip"><b>WeUno</b>Software &amp; AI · United Kingdom</div>
       </div>
     </div>
@@ -604,7 +635,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <a class="btn hot" href="#contact">Start your project</a>
       </div>
       <div class="stage"><div class="orb"></div>
-        <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.webp" width="960" height="600" decoding="async" alt="Al-Quraysh Supermarket website" loading="lazy"></div></div><div class="base"></div></div>
+        <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.webp" srcset="alquraysh-640.webp 640w, alquraysh.webp 960w" sizes="(max-width:900px) min(600px,92vw), 560px" width="960" height="600" decoding="async" alt="Al-Quraysh Supermarket website" loading="lazy"></div></div><div class="base"></div></div>
         <div class="chip"><b>Al-Quraysh Supermarket</b>Peterborough, UK</div>
       </div>
     </div>
@@ -618,7 +649,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
         <a class="btn hot" href="#contact">Start your project</a>
       </div>
       <div class="stage"><div class="orb"></div>
-        <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.webp" width="960" height="600" decoding="async" alt="NYC Ultimate Party Bus website" loading="lazy"></div></div><div class="base"></div></div>
+        <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.webp" srcset="nycbus-640.webp 640w, nycbus.webp 960w" sizes="(max-width:900px) min(600px,92vw), 560px" width="960" height="600" decoding="async" alt="NYC Ultimate Party Bus website" loading="lazy"></div></div><div class="base"></div></div>
         <div class="chip"><b>NYC Ultimate Party Bus</b>New York, USA</div>
       </div>
     </div>
@@ -633,117 +664,117 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
     <div class="grid" id="grid">
 <a class="card" data-n="cleaning" href="https://clearocleaningsolutions.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="clearo.webp" alt="Clearo Cleaning Solutions website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="clearo.webp" srcset="clearo-640.webp 640w, clearo.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Clearo Cleaning Solutions website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Clearo Cleaning Solutions</h3><p>Powell &amp; Dublin, Ohio</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="cleaning" href="https://paulscleaningservices.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="pauls.webp" alt="Paul&#x27;s Cleaning Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="pauls.webp" srcset="pauls-640.webp 640w, pauls.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Paul&#x27;s Cleaning Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Paul&#x27;s Cleaning Services</h3><p>Pompano Beach, Florida</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="cleaning" href="https://hdhomecarecleaning.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="hdhomecare.webp" alt="H&amp;D Home Care &amp; Cleaning website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="hdhomecare.webp" srcset="hdhomecare-640.webp 640w, hdhomecare.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="H&amp;D Home Care &amp; Cleaning website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>H&amp;D Home Care &amp; Cleaning</h3><p>Bucksport, Maine</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="cleaning" href="https://yourhomesoclean.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#3BA7FF"><span class="ind">Cleaning</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="yourhomesoclean.webp" alt="Your Home So Clean website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="yourhomesoclean.webp" srcset="yourhomesoclean-640.webp 640w, yourhomesoclean.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Your Home So Clean website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Your Home So Clean</h3><p>Lawrence Township, New Jersey</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="trades" href="https://handyhomeheroes.services" target="_blank" rel="noopener">
   <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="handy.webp" alt="Handy Home Heroes website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="handy.webp" srcset="handy-640.webp 640w, handy.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Handy Home Heroes website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Handy Home Heroes</h3><p>Perth, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="trades" href="https://merakifloors.net" target="_blank" rel="noopener">
   <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="meraki.webp" alt="Meraki Floors &amp; Remodeling website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="meraki.webp" srcset="meraki-640.webp 640w, meraki.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Meraki Floors &amp; Remodeling website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Meraki Floors &amp; Remodeling</h3><p>Sykesville, Maryland</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="trades" href="https://scottyhartaspainting.com.au" target="_blank" rel="noopener">
   <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="scotty.webp" alt="Scotty Hartas Painting website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="scotty.webp" srcset="scotty-640.webp 640w, scotty.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Scotty Hartas Painting website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Scotty Hartas Painting</h3><p>Brisbane, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="trades" href="https://elcandadolocksmithiii.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="elcandado.webp" alt="El Candado Locksmith website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="elcandado.webp" srcset="elcandado-640.webp 640w, elcandado.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="El Candado Locksmith website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>El Candado Locksmith</h3><p>El Paso, Texas</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="trades" href="https://mcneesehomeinspections.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#F47B20"><span class="ind">Home services &amp; trades</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="mcneese.webp" alt="McNeese Home Inspections website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="mcneese.webp" srcset="mcneese-640.webp 640w, mcneese.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="McNeese Home Inspections website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>McNeese Home Inspections</h3><p>Huntsville, Alabama</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="property" href="https://beyondvisiondesign.com.au" target="_blank" rel="noopener">
   <div class="tile" style="--h:#8C6BFF"><span class="ind">Property &amp; building</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.webp" alt="Beyond Vision Design website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.webp" srcset="beyond-640.webp 640w, beyond.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Beyond Vision Design website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Beyond Vision Design</h3><p>Sydney, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="property" href="https://perthpropertyadviser.com.au" target="_blank" rel="noopener">
   <div class="tile" style="--h:#8C6BFF"><span class="ind">Property &amp; building</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="perthproperty.webp" alt="Perth Property Adviser website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="perthproperty.webp" srcset="perthproperty-640.webp 640w, perthproperty.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Perth Property Adviser website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Perth Property Adviser</h3><p>Perth, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="property" href="https://smarterbuilder.com.au" target="_blank" rel="noopener">
   <div class="tile" style="--h:#8C6BFF"><span class="ind">Property &amp; building</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="smarter.webp" alt="Smarter Builder website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="smarter.webp" srcset="smarter-640.webp 640w, smarter.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Smarter Builder website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Smarter Builder</h3><p>Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="events" href="https://nycultimatepartybus.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#FF4FA3"><span class="ind">Events &amp; hospitality</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.webp" alt="NYC Ultimate Party Bus website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="nycbus.webp" srcset="nycbus-640.webp 640w, nycbus.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="NYC Ultimate Party Bus website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>NYC Ultimate Party Bus</h3><p>New York, USA</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="events" href="https://festiveeventsbynatalya.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#FF4FA3"><span class="ind">Events &amp; hospitality</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="festive.webp" alt="Festive Events by Natalya website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="festive.webp" srcset="festive-640.webp 640w, festive.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Festive Events by Natalya website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Festive Events by Natalya</h3><p>New Jersey, USA</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="events" href="https://luxuryballoondecor.ca" target="_blank" rel="noopener">
   <div class="tile" style="--h:#FF4FA3"><span class="ind">Events &amp; hospitality</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="luxuryballoon.webp" alt="Luxury Balloon Decor website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="luxuryballoon.webp" srcset="luxuryballoon-640.webp 640w, luxuryballoon.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Luxury Balloon Decor website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Luxury Balloon Decor</h3><p>Vancouver, Canada</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="health" href="https://hallowhealthservices.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#21C47B"><span class="ind">Health, fitness &amp; pets</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="hallow.webp" alt="Hallow Health &amp; Psychiatric Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="hallow.webp" srcset="hallow-640.webp 640w, hallow.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Hallow Health &amp; Psychiatric Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Hallow Health &amp; Psychiatric Services</h3><p>New Lenox, Illinois</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="health" href="https://madmaxacademymma.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#21C47B"><span class="ind">Health, fitness &amp; pets</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="madmax.webp" alt="Mad Max Academy website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="madmax.webp" srcset="madmax-640.webp 640w, madmax.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Mad Max Academy website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Mad Max Academy</h3><p>Columbus, Ohio</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="health" href="https://dansfurrykids.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#21C47B"><span class="ind">Health, fitness &amp; pets</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="dansfurry.webp" alt="Dan&#x27;s Furry Kids website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="dansfurry.webp" srcset="dansfurry-640.webp 640w, dansfurry.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Dan&#x27;s Furry Kids website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Dan&#x27;s Furry Kids</h3><p>Thornlands, Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="pro" href="https://kimwelltaxservices.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#2D6BFF"><span class="ind">Professional services</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="kimwell.webp" alt="Kimwell Tax Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="kimwell.webp" srcset="kimwell-640.webp 640w, kimwell.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Kimwell Tax Services website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Kimwell Tax Services</h3><p>Fort Worth, Texas</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="pro" href="https://tsystems.com.au" target="_blank" rel="noopener">
   <div class="tile" style="--h:#2D6BFF"><span class="ind">Professional services</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="tsystems.webp" alt="T Systems website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="tsystems.webp" srcset="tsystems-640.webp 640w, tsystems.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="T Systems website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>T Systems</h3><p>Australia</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="pro" href="https://weuno.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#2D6BFF"><span class="ind">Professional services</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="weuno.webp" alt="WeUno website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="weuno.webp" srcset="weuno-640.webp 640w, weuno.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="WeUno website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>WeUno</h3><p>Software &amp; AI development · United Kingdom</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="stores" href="https://alqurayshsupermarket.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#ED1C24"><span class="ind">Online stores</span><span class="shop">Online store</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.webp" alt="Al-Quraysh Supermarket website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="alquraysh.webp" srcset="alquraysh-640.webp 640w, alquraysh.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Al-Quraysh Supermarket website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Al-Quraysh Supermarket</h3><p>Peterborough, UK</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 <a class="card" data-n="stores" href="https://powerplusherbal.com" target="_blank" rel="noopener">
   <div class="tile" style="--h:#ED1C24"><span class="ind">Online stores</span><span class="shop">Online store</span>
-    <div class="laptop"><div class="lid"><div class="scr"><img src="powerplus.webp" alt="Power Plus Herbal website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
+    <div class="laptop"><div class="lid"><div class="scr"><img src="powerplus.webp" srcset="powerplus-640.webp 640w, powerplus.webp 960w" sizes="(max-width:640px) 86vw, (max-width:1080px) 44vw, 340px" alt="Power Plus Herbal website" loading="lazy" decoding="async" width="960" height="600"></div></div><div class="base"></div></div></div>
   <div class="cinfo"><div><h3>Power Plus Herbal</h3><p>Herbal wellness store</p></div><span class="go"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></svg></span></div>
 </a>
 </div>
@@ -762,7 +793,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
           <a class="btn white" href="tel:+12818052090">Call +1 (281) 805 2090</a>
         </div>
       </div>
-      <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.webp" width="960" height="600" decoding="async" alt="Beyond Vision Design website" loading="lazy"></div></div><div class="base"></div></div>
+      <div class="laptop"><div class="lid"><div class="scr"><img src="beyond.webp" srcset="beyond-640.webp 640w, beyond.webp 960w" sizes="(max-width:900px) min(600px,92vw), 560px" width="960" height="600" decoding="async" alt="Beyond Vision Design website" loading="lazy"></div></div><div class="base"></div></div>
     </div>
   </div>
 </section>
@@ -833,7 +864,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
 <footer id="contact">
   <div class="wrap">
     <div>
-      <img class="logo" src="logo.png" alt="Marcom Growth" width="180" height="40">
+      <img class="logo" src="logo.png" alt="Marcom Growth" width="181" height="40" loading="lazy" decoding="async">
       <div class="flinks"><a href="#services">Services</a><a href="#work">Our Work</a><a href="#pricing">Pricing</a><a href="#process">How we do it</a><a href="#faq">FAQ</a><a href="https://marcomgrowth.com" target="_blank" rel="noopener">marcomgrowth.com</a><a href="https://www.instagram.com/marcomgrowthllc" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=61596092339354" target="_blank" rel="noopener">Facebook</a></div>
       <a class="cline" href="https://www.google.com/maps/search/?api=1&query=Richmond%2C+Texas" target="_blank" rel="noopener"><span><svg viewBox="0 0 24 24"><path d="M12 22s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="10" r="2.6"/></svg></span>Richmond, Texas</a>
       <a class="cline" href="tel:+12818052090"><span><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></span>+1 (281) 805 2090</a>
@@ -855,7 +886,7 @@ if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.
     </div>
     <div class="legal"><span>© <span id="yr">2026</span> Marcom Growth. All rights reserved.</span><a href="https://marcomgrowth.com" target="_blank" rel="noopener">marcomgrowth.com</a></div>
   </div>
-  <div class="giant" aria-hidden="true">marcom</div>
+  <div class="giant" aria-hidden="true"></div>
 </footer>
 
 <div class="xpop" id="xpop" role="dialog" aria-modal="true" aria-labelledby="xtitle" aria-hidden="true">
@@ -980,51 +1011,14 @@ document.getElementById('yr').textContent=new Date().getFullYear();
   requestAnimationFrame(t);
 })();
 </script>
-<script type="importmap">{"imports":{"three":"./three.module.min.js"}}</script>
-<script type="module">
-import * as THREE from 'three';
-import {RoomEnvironment} from './RoomEnvironment.js';
-const host=document.getElementById('chev');
-function startGL(){
-try{
-  const r=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'high-performance'});
-  r.setPixelRatio(Math.min(devicePixelRatio,1.5));
-  r.toneMapping=THREE.ACESFilmicToneMapping;r.toneMappingExposure=1.05;
-  host.appendChild(r.domElement);
-  const scene=new THREE.Scene();
-  const pm=new THREE.PMREMGenerator(r);scene.environment=pm.fromScene(new RoomEnvironment(),.04).texture;
-  const cam=new THREE.PerspectiveCamera(32,1,.1,100);cam.position.set(0,0,9.5);
-  // Marcom mark: big chevron + small lower-left bar
-  const P=(pts)=>{const s=new THREE.Shape();pts.forEach(([x,y],i)=>i?s.lineTo(x,y):s.moveTo(x,y));s.closePath();return s};
-  const big=P([[-0.35,1.25],[0.42,1.25],[1.75,0],[0.42,-1.25],[-0.35,-1.25],[0.98,0]]);
-  const small=P([[-1.55,-1.25],[-0.78,-1.25],[0.2,-0.18],[-0.18,0.18]]);
-  const ext={depth:.55,bevelEnabled:true,bevelThickness:.12,bevelSize:.07,bevelSegments:8,curveSegments:4};
-  const mat=(c,e)=>new THREE.MeshPhysicalMaterial({color:c,roughness:.22,metalness:.15,clearcoat:1,clearcoatRoughness:.12,sheen:.4,sheenColor:new THREE.Color(e),emissive:new THREE.Color(e),emissiveIntensity:.08});
-  const g=new THREE.Group();
-  const m1=new THREE.Mesh(new THREE.ExtrudeGeometry(big,ext),mat('#ED1C24','#ff6a3d'));
-  const m2=new THREE.Mesh(new THREE.ExtrudeGeometry(small,ext),mat('#F47B20','#FFB547'));
-  [m1,m2].forEach(m=>{m.geometry.translate(-0.1,0,-.275);g.add(m)});
-  g.scale.setScalar(1.12);g.position.x=-.15;scene.add(g);
-  const key=new THREE.DirectionalLight('#ffffff',2.2);key.position.set(3,4,6);scene.add(key);
-  const rim=new THREE.PointLight('#FFB547',30,20);rim.position.set(-4,-2,3);scene.add(rim);
-  const fill=new THREE.PointLight('#ff2a2a',25,20);fill.position.set(4,-3,-2);scene.add(fill);
-  let mx=0,my=0,tx=0,ty=0;
-  addEventListener('pointermove',e=>{tx=(e.clientX/innerWidth-.5);ty=(e.clientY/innerHeight-.5)},{passive:true});
-  const size=()=>{const w=r.domElement.clientWidth||host.clientWidth,h=r.domElement.clientHeight||host.clientHeight;r.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()};
-  size();addEventListener('resize',size);
-  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let t0=performance.now(),vis=true;
-  new IntersectionObserver(([e])=>vis=e.isIntersecting).observe(host);
-  (function loop(t){requestAnimationFrame(loop);if(!vis)return;const s=(t-t0)/1000;
-    mx+=(tx-mx)*.05;my+=(ty-my)*.05;
-    g.rotation.y=(reduce?-.35:Math.sin(s*.45)*.38-.25)+mx*.9;
-    g.rotation.x=(reduce?.1:Math.sin(s*.6)*.08)+my*.5;
-    g.position.y=reduce?0:Math.sin(s*.9)*.12;
-    r.render(scene,cam)})(t0);
-}catch(err){host.classList.add('nogl')}
-}
-const go=()=>('requestIdleCallback' in window?requestIdleCallback(startGL,{timeout:600}):setTimeout(startGL,50));
-if(document.documentElement.classList.contains('intro-on'))addEventListener('intro:done',go,{once:true});else go();
+<script>
+(function(){
+  var host=document.getElementById('chev'),done=false;
+  function fallback(){host.classList.add('nogl');var i=host.querySelector('.fallback');if(i&&i.dataset.src)i.src=i.dataset.src;}
+  function load(){if(done)return;done=true;import('./hero3d.min.js').then(function(m){m.startGL(host);if(host.classList.contains('nogl'))fallback();}).catch(fallback);}
+  function later(){('requestIdleCallback' in window)?requestIdleCallback(load,{timeout:600}):setTimeout(load,50);}
+  if(document.documentElement.classList.contains('intro-on')){addEventListener('intro:done',later,{once:true});setTimeout(later,6000);}else later();
+})();
 </script>
 </body>
 </html>
