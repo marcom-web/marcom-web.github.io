@@ -518,7 +518,7 @@ html.intro-on #chev{transform:scale(.6) rotate(-12deg);opacity:0}
 
 <script>
 (function(){var f=/[?&]intro/.test(location.search),seen=false;try{seen=sessionStorage.getItem('mgIntro')==='1'}catch(e){}
-if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.documentElement.classList.add('no-intro')}else{document.documentElement.classList.add('intro-on');try{history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search)}catch(e){}var top0=function(){scrollTo(0,0)};top0();addEventListener('load',top0,{once:true});addEventListener('intro:done',top0,{once:true});setTimeout(function(){document.documentElement.classList.remove('intro-on')},5200)}})();
+if(matchMedia('(prefers-reduced-motion: reduce)').matches||(seen&&!f)){document.documentElement.classList.add('no-intro')}else{document.documentElement.classList.add('intro-on');try{history.scrollRestoration='manual';if(location.hash)history.replaceState(null,'',location.pathname+location.search)}catch(e){}var moved=false,guard=true,top0=function(){if(!moved&&guard&&(scrollX||scrollY))scrollTo({top:0,left:0,behavior:'instant'})};['wheel','touchstart','keydown','mousedown'].forEach(function(t){addEventListener(t,function(){moved=true},{passive:true,once:true})});top0();addEventListener('scroll',top0,{passive:true});addEventListener('load',top0,{once:true});addEventListener('intro:done',function(){top0();setTimeout(function(){guard=false},2000)},{once:true});setTimeout(function(){guard=false},8000);setTimeout(function(){document.documentElement.classList.remove('intro-on')},5200)}})();
 </script>
 <div id="intro">
   <div class="layer l-grad"></div>
