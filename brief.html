@@ -188,7 +188,7 @@ footer a:hover{color:#fff}
 <input class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
 <div class="submit">
 <button class="btn" type="submit" id="go">Send my brief</button>
-<span class="note">Or call +1 (281) 805 2090</span>
+<span class="note">Or call +1 (281) 805 2090 · WhatsApp <a href="https://wa.me/12148964237" target="_blank" rel="noopener">+1 (214) 896 4237</a></span>
 </div>
 <p class="consent">By sending your brief you agree to our <a href="privacy.html">privacy policy</a>.</p>
 <p class="msg" id="msg" role="status" aria-live="polite"></p>
@@ -196,7 +196,7 @@ footer a:hover{color:#fff}
 
 <section class="done" aria-live="polite">
 <h2>Thanks, your brief is in</h2>
-<p>We'll go through it and get back to you within one business day with ideas and a quote. If anything changes, reply to our email or write to sales@marcomgrowth.com.</p>
+<p>We'll go through it and get back to you within one business day with ideas and a quote. Opening WhatsApp so you can send it to us there too. If anything changes, reply to our email or write to sales@marcomgrowth.com.</p>
 <a class="btn" href="./#work">See our work</a>
 </section>
 </main>
@@ -231,11 +231,15 @@ service:services,business:f.business.value.trim(),industry:f.industry.value.trim
 customers:f.customers.value.trim(),website:f.website.value.trim(),plan:f.plan.value,refs:f.refs.value.trim(),
 timeline:pick('timeline'),budget:pick('budget'),notes:f.notes.value.trim()};
 go.disabled=true;go.textContent='Sending...';say('');
-fetch(LEADS_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(d)}).then(function(){
+var L=['Hello Marcom Growth Team,','','New project brief:','','Name: '+d.name,'Email: '+d.email];
+[['Phone',d.phone],['Services',d.service],['Business',d.business],['Industry',d.industry],['Location',d.location],['Current website',d.website],['Plan',d.plan],['Timeline',d.timeline],['Budget',d.budget],['Customers',d.customers],['References',d.refs],['Notes',d.notes]].forEach(function(r){if(r[1])L.push(r[0]+': '+String(r[1]).slice(0,400));});
+var wa='https://wa.me/12148964237?text='+encodeURIComponent(L.join('\n'));
+Promise.race([
+fetch(LEADS_URL,{method:'POST',mode:'no-cors',body:new URLSearchParams(d)}).catch(function(){}),
+new Promise(function(r){setTimeout(r,8000);})
+]).then(function(){
 document.body.classList.add('sent');window.scrollTo({top:0,behavior:'smooth'});
-}).catch(function(){
-go.disabled=false;go.textContent='Send my brief';
-say('Your brief could not be sent. Check your connection and try again, or email sales@marcomgrowth.com.',true);
+setTimeout(function(){location.href=wa;},1200);
 });
 });
 })();
